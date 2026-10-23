@@ -4,7 +4,7 @@ void	ft_printf_hexa(unsigned long nb, char *str, int *c, char postive)
 	int	b;
 
 	b = (nb % 16);
-	if (postive)
+	if (postive && nb)
 	{
 		if (str[15] == 'f')
 			write(1, "0x", 2);
@@ -36,6 +36,7 @@ void    print_pointer(va_list ptr , int *c,int *flag, int *num)
 	len = 0;
 	pt = va_arg(ptr, void *);
 	len_hexa((unsigned long)pt,&len);
+	len +=2;
 	if (!pt)
 	{
 		write(1, "(nil)", 5);

@@ -2,7 +2,7 @@ NAME = libftprintf.a
 CC = cc
 CFLAGS = -Wall -Werror -Wextra 
 AR = ar rcs 
-SRCS = ft_printf.c helper_fun.c print_string.c print_char.c print_pointer.c
+SRCS = ft_printf.c helper_fun.c print_string.c print_char.c print_pointer.c print_other.c
 OBJS = $(SRCS:.c=.o)
 path = /home/raghad/Documents/libft/lv.2
 

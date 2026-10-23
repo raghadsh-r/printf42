@@ -26,10 +26,14 @@ void write_char(int len , char ch,int *c);
 int ft_strlen(const char *s);
 void hindel_print_string(char *strr, int *c,int *flag, int *num);
 void    print_string(const char *str, va_list ptr , int *c,int *flag, int *num);
-const char  *format(const char *str, va_list ptr, int *c);
+const char  *format(const char *str, va_list ptr, int *c,int *num);
 int ft_printf(const char *str, ...);
 void    print_char(va_list ptr , int *c,int *flag, int *num);
 void	ft_printf_hexa(unsigned long nb, char *str, int *c, char postive);
 void    print_pointer(va_list ptr , int *c,int *flag, int *num);
+void	ft_putnbr(long nb, int *c, char postive);
+void print_number(va_list ptr , int *flag,int *c);
+void print_unsigned_int(va_list ptr,int *c);
+void ft_printf_hex(va_list ptr, char *str, int *c, int *flag);
 
 #endif

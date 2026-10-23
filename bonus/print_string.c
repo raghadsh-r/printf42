@@ -21,7 +21,7 @@ void hindel_print_string(char *strr, int *c,int *flag, int *num)
 
     len = ft_strlen(strr);
     to_print = len;
-    if (flag[5] == '1')
+    if (flag[5] == 1)
     {
         if (num[1] < len)
             to_print = num[1];
@@ -29,7 +29,7 @@ void hindel_print_string(char *strr, int *c,int *flag, int *num)
     padding = num[0] - to_print;
     if (padding < 0)
         padding = 0;
-    if (flag[2] == '1') 
+    if (flag[2] == 1) 
     {
         *c += write(1, strr, to_print);
         write_char(padding, ' ', c);
