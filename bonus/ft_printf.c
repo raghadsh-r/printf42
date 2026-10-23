@@ -1,69 +1,46 @@
 #include "ft_printf.h"
-void count_number(long nb,int *c)
-{   
-    char	b;
-    b = (nb % 10) + '0';
-    if (nb >= 10)
-	{
-		count_number(nb / 10, c );
-	}
-    (*c)++;
-}
-void	ft_putnbr(long nb, int *c, char postive)
+
+void	ft_putnbr_unsigned(long nb, int *c)
 {
 	char	b;
-
-	if (nb < 0)
-	{
-		nb *= -1;
-		(*c)++;
-		write(1, "-", 1);
-		postive = 0;
-	}
-	if (postive)
-	{
-		write(1, &postive, 1);
-		(*c)++;
-		postive = 0;
-	}
 	b = (nb % 10) + '0';
 	if (nb >= 10)
 	{
-		ft_putnbr(nb / 10, c, postive);
+		ft_putnbr_unsigned(nb / 10, c);
 	}
 	(*c)++;
 	write(1, &b, 1);
 }
-
-void    print_number(va_list ptr , int *c,char *flag, int *num)
+void	len_unsigned(long nb, int *len)
 {
-    int num;
-    int len_num;
-    int numofzero;
+	if (nb >= 10)
+	{
+		ft_putnbr_unsigned(nb / 10, len);
+	}
+	(*len)++;
+} 
+void print_unsigned_int(va_list ptr, int *c,int *flag,int *num)
+{
+    unsigned int x;
+    int len;
 
-    len_num = 0;
-    numofzero = 0;
-    num = va_arg(ptr, int);
-    count_number(num, len_num);
-    if(num[1] > len_num )
-    {
-        numofzero = num - len_num;
-    }
-    if (flag[2] == '1') 
-    {  
-        if(flag[1])
-        ft_putnbr(num , c,'+');
-        
-    }
-    else 
+    len = 0;
+    x = va_arg(ptr, unsigned int);
+    len_unsigned(x, &len);
+    num[0] -= len;
+    if(flag[2])
     {
 
     }
+    else
+    {
+ 
 
+    }
 }
 const char  *format(const char *str, va_list ptr, int *c)
 {
-    char flag[6];
+    int     flag[6];
     int     i;
     int     num[2];
 
@@ -78,8 +55,12 @@ const char  *format(const char *str, va_list ptr, int *c)
     str = ft_atio(str,&num[1]);
     if(*str=='s')
         print_string(str, ptr , c, flag, num);
-    else if(*str == 'd' || *str == 'i')
-        print_number(ptr,c, flag, num);
+    else if(*str == 'c')
+        print_char(ptr,c,flag,num);
+    else if(*str == 'p')
+        print_pointer(ptr,c,flag,num);
+    else if(*str =='u')
+        print_unsigned_int(ptr,c,flag,num);
     str++;
     return(str);
 }

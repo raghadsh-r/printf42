@@ -13,7 +13,7 @@ int ft_strlen(const char *s)
 }
 
 
-void hindel_print_string(char *strr, int *c,char *flag, int *num)
+void hindel_print_string(char *strr, int *c,int *flag, int *num)
 {
     int len;
     int to_print;
@@ -41,7 +41,7 @@ void hindel_print_string(char *strr, int *c,char *flag, int *num)
     }
 }
 
-void    print_string(const char *str, va_list ptr , int *c,char *flag, int *num)
+void    print_string(const char *str, va_list ptr , int *c,int *flag, int *num)
 {
     char    *strr;
     (void)str;

@@ -13,31 +13,31 @@ const char  *ft_atio(const char *str, int *num)
 	}
 	return (&str[i]);
 }
-const char *cheak_the_flag(const char *str,char *flag)
+const char *cheak_the_flag(const char *str,int *flag)
 {
     int i = 0;
     while(str[i]==' ' || str[i]=='+' || str[i]=='-' || str[i]=='0' || str[i]=='#')
     {
         if(str[i]==' ')
-            flag[0]='1';
+            flag[0] = 1;
         else if(str[i]=='+')
-            flag[1]='1';
+            flag[1] = 1;
         else if(str[i]=='-')
-            flag[2]='1';
+            flag[2] = 1;
         else if(str[i]=='0')
-            flag[3]='1';
+            flag[3] = 1;
         else if(str[i]=='#')
-            flag[4]='1';
+            flag[4] = 1;
         i++;
     }
     return (&str[i]);
 }
 
-const char  *cheak_the_doit(const char *str,char *flag)
+const char  *cheak_the_doit(const char *str,int *flag)
 {
     if(*str=='.')
     {   
-        flag[5] ='1';
+        flag[5] = 1;
         str++;
     }
     return (str); 
