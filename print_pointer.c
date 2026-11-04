@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   print_pointer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralshraw <ralshraw@student.42amman.com>    +#+  +:+       +#+        */
+/*   By: ralshraw <ralshraw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/03 19:00:23 by ralshraw          #+#    #+#             */
-/*   Updated: 2026/11/03 19:00:24 by ralshraw         ###   ########.fr       */
+/*   Updated: 2026/11/04 10:09:43 by ralshraw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
 void	ft_printf_hexa(unsigned long nb, char *str, int *c, char postive)
 {
 	int	b;
@@ -32,40 +33,41 @@ void	ft_printf_hexa(unsigned long nb, char *str, int *c, char postive)
 	(*c)++;
 	write(1, &str[b], 1);
 }
-void len_hexa(unsigned long nb,int *len)
+
+void	len_hexa(unsigned long nb,	int *len)
 {
 	if (nb >= 16)
 	{
-		len_hexa(nb / 16,len);
+		len_hexa(nb / 16, len);
 	}
 	(*len)++;
 }
-void    print_pointer(va_list ptr , int *c,int *flag, int *num)
+
+void	print_pointer(va_list ptr, int *c, int *flag, int *num)
 {
-    void	*pt;
+	void	*pt;
 	int		len;
 
 	len = 0;
 	pt = va_arg(ptr, void *);
-	len_hexa((unsigned long)pt,&len);
-	len +=2;
+	len_hexa((unsigned long)pt, &len);
+	len += 2;
 	if (!pt)
 	{
-		write(1, "(nil)", 5);
-    	(*c) += 5;
+		(*c) += write(1, "(nil)", 5);
 	}
-	else if(num[0] - len > 0 && flag[2])
+	else if (num[0] - len > 0 && flag[2])
 	{
 		write(1, "0x", 2);
 		(*c) += 2;
 		ft_printf_hexa((unsigned long)pt, "0123456789abcdef", c, 0);
-        write_char(num[0] - len,' ',c);
-    }
-    else
-    {
-        write_char(num[0] - len ,' ',c);
-        write(1, "0x", 2);
+		write_char(num[0] - len, ' ', c);
+	}
+	else
+	{
+		write_char(num[0] - len, ' ', c);
+		write(1, "0x", 2);
 		(*c) += 2;
 		ft_printf_hexa((unsigned long)pt, "0123456789abcdef", c, 0);
-    }
+	}
 }

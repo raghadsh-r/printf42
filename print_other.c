@@ -6,11 +6,12 @@
 /*   By: ralshraw <ralshraw@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/03 19:00:20 by ralshraw          #+#    #+#             */
-/*   Updated: 2026/11/03 19:00:21 by ralshraw         ###   ########.fr       */
+/*   Updated: 2026/11/04 10:03:14 by ralshraw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
 void	ft_putnbr(long nb, int *c, char postive)
 {
 	char	b;
@@ -36,24 +37,29 @@ void	ft_putnbr(long nb, int *c, char postive)
 	(*c)++;
 	write(1, &b, 1);
 }
-void print_number(va_list ptr , int *flag,int *c)
+
+void	print_number(va_list ptr, int *flag, int *c)
 {
-    int x = va_arg(ptr, int);
-    if(flag[1])
-    ft_putnbr(x,c,'+');
-    else if(flag[0])
-    ft_putnbr(x,c,' ');
-    else
-    ft_putnbr(x,c,'\0');
+	int	x;
+
+	x = va_arg(ptr, int);
+	if (flag[1])
+		ft_putnbr (x, c, '+');
+	else if (flag[0])
+		ft_putnbr(x, c, ' ');
+	else
+		ft_putnbr(x, c, '\0');
 }
-void print_unsigned_int(va_list ptr,int *c)
+
+void	print_unsigned_int(va_list ptr, int *c)
 {
-    ft_putnbr(va_arg(ptr, unsigned int), c, 0);
+	ft_putnbr(va_arg(ptr, unsigned int), c, 0);
 }
-void ft_printf_hex(va_list ptr, char *str, int *c, int *flag)
+
+void	ft_printf_hex(va_list ptr, char *str, int *c, int *flag)
 {
-    if(flag[4])
-    ft_printf_hexa(va_arg(ptr, unsigned int), str, c,'#');
-    else
-    ft_printf_hexa(va_arg(ptr, unsigned int), str, c,'\0');
+	if (flag[4])
+		ft_printf_hexa(va_arg(ptr, unsigned int), str, c, '#');
+	else
+		ft_printf_hexa(va_arg(ptr, unsigned int), str, c, '\0');
 }
